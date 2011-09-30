@@ -35,5 +35,5 @@ IRT="$NACL_DIR/scons-out/nacl_irt-${arch}/staging/irt_core.nexe"
 RTLD="$NACL_DIR/toolchain/linux_x86/x86_64-nacl/${libdir}/runnable-ld.so"
 LIBDIR="$NACL_DIR/toolchain/linux_x86/x86_64-nacl/${libdir}"
 
-exec "$SEL_LDR" -a -S -B "$IRT" -E "NACL_RESOURCE_LIBDIR=$LIBDIR" -- \
-  "$RTLD" "$@"
+exec "$SEL_LDR" -a -S -B "$IRT" -- \
+  "$RTLD" --library-path $LIBDIR "$@"
