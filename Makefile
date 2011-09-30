@@ -17,4 +17,5 @@ install: ld-nacl-x86-32.so.1 ld-nacl-x86-64.so.1
 	chmod 755 /lib/ld-nacl-x86-32.so.1
 	cp ld-nacl-x86-64.so.1 /lib64/ld-nacl-x86-64.so.1
 	chmod 755 /lib64/ld-nacl-x86-64.so.1
+	echo "Please, manually setup nacl_interp_loader.sh and set NACL_INTERP_LOADER env variable to point to nacl_intep_loader.sh"
 
