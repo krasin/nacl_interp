@@ -12,3 +12,9 @@ ld-nacl-x86-64.so.1: nacl_interp.c
 clean:
 	rm -rf *.o *.so.1
 
+install: ld-nacl-x86-32.so.1 ld-nacl-x86-64.so.1
+	cp ld-nacl-x86-32.so.1 /lib/ld-nacl-x86-32.so.1
+	chmod 755 /lib/ld-nacl-x86-32.so.1
+	cp ld-nacl-x86-64.so.1 /lib64/ld-nacl-x86-64.so.1
+	chmod 755 /lib64/ld-nacl-x86-64.so.1
+
