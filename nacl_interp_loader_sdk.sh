@@ -36,5 +36,5 @@ IRT="$NACL_SDK_ROOT/toolchain/linux_x86/runtime/irt_core_${arch}.nexe"
 RTLD="$NACL_SDK_ROOT/toolchain/linux_x86/x86_64-nacl/${libdir}/runnable-ld.so"
 LIBDIR="$NACL_SDK_ROOT/toolchain/linux_x86/x86_64-nacl/${libdir}"
 
-exec "$SEL_LDR" -a -S -B "$IRT" -- \
+exec "$SEL_LDR" -a -S -B "$IRT" -l /dev/null -- \
   "$RTLD" --library-path $LIBDIR "$@"
