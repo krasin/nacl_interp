@@ -7,7 +7,7 @@
 
 # Assumes this file is sitting in the source tree.
 # This should be changed for some proper SDK installation setup.
-NACL_SDK_ROOT=${NACL_SDK_ROOT:-/path/to/naclsdk/pepper_15}
+NACL_SDK_ROOT=${NACL_SDK_ROOT:-/path/to/naclsdk/pepper_17}
 
 case "$1" in
 i?86)
