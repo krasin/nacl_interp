@@ -7,7 +7,8 @@
 
 # Assumes this file is sitting in the source tree.
 # This should be changed for some proper SDK installation setup.
-NACL_SDK_ROOT=${NACL_SDK_ROOT:-/path/to/naclsdk/pepper_17}
+NACL_SDK_ROOT=${NACL_SDK_ROOT:-/path/to/naclsdk/pepper_21}
+NACL_TOOLCHAIN_ROOT=${NACL_SDK_ROOT}/toolchain/linux_x86_glibc
 
 case "$1" in
 i?86)
@@ -31,10 +32,12 @@ esac
 
 shift
 
-SEL_LDR="$NACL_SDK_ROOT/toolchain/linux_x86/bin/sel_ldr_${arch}"
-IRT="$NACL_SDK_ROOT/toolchain/linux_x86/runtime/irt_core_${arch}.nexe"
-RTLD="$NACL_SDK_ROOT/toolchain/linux_x86/x86_64-nacl/${libdir}/runnable-ld.so"
-LIBDIR="$NACL_SDK_ROOT/toolchain/linux_x86/x86_64-nacl/${libdir}"
+SEL_LDR="$NACL_SDK_ROOT/tools/sel_ldr_${arch}"
+IRT="$NACL_SDK_ROOT/tools/irt_core_${arch}.nexe"
+RTLD="$NACL_TOOLCHAIN_ROOT/x86_64-nacl/${libdir}/runnable-ld.so"
+LIBDIR="$NACL_TOOLCHAIN_ROOT/x86_64-nacl/${libdir}"
 
-exec "$SEL_LDR" -a -S -B "$IRT" -l /dev/null -- \
+echo "$SEL_LDR" -a -S -B "$IRT" -- \
+  "$RTLD" --library-path $LIBDIR "$@"
+exec "$SEL_LDR" -a -S -B "$IRT" -- \
   "$RTLD" --library-path $LIBDIR "$@"
